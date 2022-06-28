@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "migrationuser",
+    "password": "casa4141",
+    "database": "migrations",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "directus",
+    "password": "directus",
+    "database": "directus",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
