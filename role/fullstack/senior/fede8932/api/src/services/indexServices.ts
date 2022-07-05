@@ -1,3 +1,6 @@
+// este archivo cuenta con los servicios que usa el controlador para cada ruta
+
+
 import db from '../models';
 import  { ResAirportsAttributes , ResAirportAttributes }  from '../types';
 

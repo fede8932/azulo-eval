@@ -1,3 +1,5 @@
+//Archivos de configuración para coneccion a DB
+
 require('dotenv').config()
 
 module.exports = {

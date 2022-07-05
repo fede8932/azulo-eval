@@ -1,3 +1,5 @@
+// Este archivos guarda los tipos que se usaron en toda la app
+
 export type Weather = 'sunny' | 'rainy' | 'cloudy' | 'windy' | 'stormy'
 export type Visibility = 'great' | 'good' | 'ok' | 'poor'
 

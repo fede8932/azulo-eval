@@ -1,3 +1,5 @@
+// Este documento realiza la conexión de la API con la DB. Se nutre de /config/config.js y de los modelos de la capera models
+
 'use strict';
 
 const fs = require('fs');

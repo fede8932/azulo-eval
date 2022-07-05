@@ -1,3 +1,5 @@
+// Archivo principal de la app
+
 import express from 'express';
 import indexRouter from './routes/indexRouter';
 import db from './models';

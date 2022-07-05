@@ -1,4 +1,4 @@
-// .sequelizerc
+// .sequelizerc  ----- Configura los directorios para sequelize
 
 const path = require('path');
 

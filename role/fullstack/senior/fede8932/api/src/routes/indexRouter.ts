@@ -1,3 +1,5 @@
+//Archivo con definición de rutas
+
 const router = require("express").Router();
 const Controlador = require('../controllers/indexController')
 

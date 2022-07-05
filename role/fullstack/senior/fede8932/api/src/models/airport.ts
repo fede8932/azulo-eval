@@ -1,3 +1,5 @@
+// Modelo de tabla airport
+
 'use strict';
 import { Model } from 'sequelize';
 import  { AirportAttributes }  from '../types'
