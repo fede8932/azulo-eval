@@ -12,7 +12,7 @@ services:
       MYSQL_PASSWORD: "directus"
       MYSQL_ROOT_PASSWORD: "directus"
     ports:
-      - "3307:3307"
+      - "3306"
     networks:
       - directus
 
@@ -32,5 +32,45 @@ services:
     volumes:
       - ./data/config:/var/directus/config
       - ./data/uploads:/var/directus/public/uploads    
+    networks:
+      - directus
+  
+  migration:
+    depends_on:
+      - mysql
+    links:
+      - mysql
+    build: ./migrations
+    environment:
+      PORT: 3003
+      MYSQL_HOST: mysql
+      MYSQL_DATABASE: directus
+      MYSQL_USER: directus
+      MYSQL_PASSWORD: directus
+    ports:
+      - "3003:3003"
+    volumes:
+      - ./migrations/config:/migrations/config
+      - ./migrations:/migrations
+    networks:
+      - directus
+
+  api:
+    depends_on:
+      - mysql
+    links:
+      - mysql
+    build: ./api
+    environment:
+      PORT: 3001
+      MYSQL_HOST: mysql
+      MYSQL_DATABASE: directus
+      MYSQL_USER: directus
+      MYSQL_PASSWORD: directus
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./api/src/config:/api/src/config
+      - ./api/src:/api/src
     networks:
       - directus

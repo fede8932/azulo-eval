@@ -1,28 +1,27 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Locations', {
+    await queryInterface.createTable('airport_operators', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      Country: {
+      name: {
         type: Sequelize.STRING
       },
-      ProvinceOrState: {
-        type: Sequelize.STRING
+      createdAt: {
+        type: Sequelize.DATE,
+        field: 'created_at',
       },
-      Latitude: {
-        type: Sequelize.INTEGER
-      },
-      Longitude: {
-        type: Sequelize.INTEGER
-      },
+      updatedAt: {
+        type: Sequelize.DATE,
+        field: 'updated_at',
+      }
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Locations');
+    await queryInterface.dropTable('airport_operators');
   }
 };

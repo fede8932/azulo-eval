@@ -1,25 +1,25 @@
 'use strict';
 import { Model } from 'sequelize';
+import { AirportOperatorAttributes } from '../types'
 
-module.exports = (sequelize, DataTypes) => {
-  class Airport extends Model{
+module.exports = (sequelize : any, DataTypes : any) => {
+  class AirportOperator extends Model<AirportOperatorAttributes>
+  implements AirportOperatorAttributes{
+    name!: string;
+    createdAt!: Date;
+    usdatedAt!: Date;
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
+    static associate(models : any) {
+      models.airports.belongsTo(AirportOperator, { foreignKey: 'airportOperatorId' })
       // define association here
-      Airport.belongsTo(models.locations)
-      models.airport_operators.hasMany(Airport, { foreignKey: 'airportOperatorId' })
     }
   }
-  Airport.init({
+  AirportOperator.init({
     name: DataTypes.STRING,
-    airportOperatorId: DataTypes.INTEGER,
-    airportCode: DataTypes.STRING,
-    locationId: DataTypes.INTEGER,
-    priorityOrder: DataTypes.INTEGER,
     createdAt: {
       type: DataTypes.DATE,
       field: 'created_at',
@@ -30,8 +30,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    modelName: 'airports',
+    modelName: 'airport_operators',
     timestamps: true,
+    underscored: true,
   });
-  return Airport;
+  return AirportOperator;
 };

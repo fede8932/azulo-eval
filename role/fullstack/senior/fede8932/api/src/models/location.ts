@@ -1,15 +1,23 @@
 'use strict';
 import { Model } from 'sequelize';
+import { LocationAttributes } from '../types'
 
 
-module.exports = (sequelize, DataTypes) => {
-  class Location extends Model{
+module.exports = (sequelize : any, DataTypes : any) => {
+  class Location extends Model<LocationAttributes> 
+  implements LocationAttributes{
+    country!: string;
+    province_or_state!: string;
+    latitude!: number;
+    longitude!: number;
+    createdAt!: Date;
+    updatedAt!: Date;
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
+    static associate(models : any) {
       models.airports.belongsTo(Location)
       // define association here
     }

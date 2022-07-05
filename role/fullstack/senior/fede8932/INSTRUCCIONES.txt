@@ -1,0 +1,53 @@
+Azulo Evaluación.
+
+Puntos terminados para puesto backend:
+
+-Desplegar instancia de MYSQL / Completo
+
+-Desplegar instancia de Directus que conecte a la base de datos desplegada en el punto anterior. / Completo
+
+-Desplegar una instancia de Flyway, la cual se conecte al contenedor de MySQL y cree por medio de un archivo de migración las siguientes tablas..... / Incompleto, lo hice pero con migraciones de Sequelize.
+
+-Crear un nuevo archivo de migración que genere datos de prueba para cada una de las tablas, con al menos 10 registros en cada tabla. Los contenidos quedan a discreción del participante. / Completo
+
+-Crear un proyecto de node.js usando TypeScript usando el nombre "airportart-api" / Completo
+
+-Crear un endpoint en node.js que permita mover aeropuertos de un operador a otro. / Completo
+
+-Crear un endpoint en node.js que permita actualizar el orden de prioridad de dos o más aeropuertos de forma simultánea. / Completo
+
+-Extra: Crear un archivo de docker que despliegue MySQL. / Completo
+
+-Extra: Crear un archivo de docker que despliegue Directus. / Completo
+
+-Extra: Crear un archivo de docker que despliegue FlyWay. / Incompleto, Lo hice pero con migraciones de Secuelize
+
+-Extra: Crear un archivo de docker que despliegue el API "airportart-api". / Completo
+
+-Extra: Crear un archivo de docker-compose que combine todos los archivos de docker en un solo sistema de contenedores conectados.
+
+INSTRUCCIONES:
+
+Generales:
+
+Para ejecutar la aplicación, deberá tener docker instalado en su computadora.
+
+-Descargar el repositorio en directorio local a elección.
+
+-Ejecutar el comando "docker-compose up -d" en el directorio que contenga el archivos "docker-compose.yaml". El sistema descargará las imagenes y generará de manera automática los contenedores.
+
+-Puede ejecutar el comando "docker logs <nombre del container>" para ver los log de las aplicaciones en ejecución. (Mirar lista de BUGS)
+
+-Ejecute el comando "docker-compose run --rm directus install --email email@example.com --password d1r3ctu5", para crear un usuario y contraseña de directus personalizada.
+
+API:
+
+-La api cuenta con algunas rutas básicas y otras que pedia el examen:
+    -"/api/airports": Devuelve el listado de los aeropuertos en formato .JSON
+    -"/api/airports/:id": Devuelve la insformación de un aeropuerto segun el ID ingresado. Muestra su localización y su operador.
+    -"/move/:AirportId" Modifica el operador del aeropuerto. Se ingresa por req.params el id del aeropuerto a modificar y por req.body, se le debe brindar la información del operador. Ejemplo: {id:5} donde "5" es el id del nuevo operador.
+    -"/change/priority": Modifica la prioridad del aeropuerto. Puede modificar varios al mismo tiempo. Por req.body, debe ingresar un objeto cuyas keys sean los codigos de los aeropuertos a modificar y sus values sean el nuevo numero de prioridad. La api, no solo buscará los aeropuertos indicados y modificará su prioridad, sino que buscará aquellos que poseian esa prioridad para asignarles una nueva. Ejemplo {"ARG-BSAS-02":1,"ARG-BSAS-01":5} En esete ejemplo no solo se le asiganará la prioridad 1 a ARG-BSAS-02 y la prioridad 5 a ARG-BSAS-01, sino que tambien buscará a los aeropuertos que tenian prioridad 1 y 5 para asiganarles la prioridad que tenian ARG-BSAS-02 Y ARG-BSAS-01 antes de realizar la consulta.
+
+BUGS:
+
+-Esto me pasa en uno de los dos equipos en que corrí la aplicacion en su conjunto. No estoy seguro de que les vaya a pasar, pero como aún no lo solucioné, quiero comentarlo. Al momento de ejecutar el comando "docker-compose up -d", finalizara sin problemas y creara exitosamente todos los contenedores. Sin embargo, me pasó que no se registraron las migraciones ni los seeders. Tambien es posible que la api no se conecte a la DB. SOLUCIÓN: Ejecutar el comando "docker stop $(docker ps -a -q)" y volver a ejecutar "docker-compose up -d".

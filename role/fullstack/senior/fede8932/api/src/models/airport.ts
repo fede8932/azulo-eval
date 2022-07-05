@@ -1,14 +1,23 @@
 'use strict';
 import { Model } from 'sequelize';
+import  { AirportAttributes }  from '../types'
 
-module.exports = (sequelize, DataTypes) => {
-  class Airport extends Model{
+module.exports = (sequelize : any, DataTypes : any) => {
+  class Airport extends Model<AirportAttributes> 
+  implements AirportAttributes{
+    name!: string;
+    airportOperatorId!: number;
+    airportCode!: string;
+    locationId!: number;
+    priorityOrder!: number;
+    createdAt!: Date;
+    updatedAt!: Date;
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
+    static associate(models : any) {
       // define association here
       Airport.belongsTo(models.locations)
       models.airport_operators.hasMany(Airport, { foreignKey: 'airportOperatorId' })
