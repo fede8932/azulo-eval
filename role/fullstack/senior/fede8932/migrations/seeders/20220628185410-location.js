@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('locations', [{
+    return queryInterface.bulkInsert('location', [{
       //Aeroparque
       Country: 'Argentina',
       Province_or_state: 'Buenos Aires',
